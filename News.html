@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="News.css">
+  </head>
+  <body>
+  <header>
+    <button id="in" class="button" onClick="getCountryCode(this.id)">India</button>
+    <button id="us" class="button button2" onClick="getCountryCode(this.id)">US</button>
+    <button id="ru" class="button button3" onClick="getCountryCode(this.id)">Russia</button>
+    <button id="ch" class="button button4" onClick="getCountryCode(this.id)">China</button>
+    <button id="au" class="button button5" onClick="getCountryCode(this.id)">Australia</button>
+    <button id="ca" class="button" onClick="getCountryCode(this.id)">Canada</button>
+    <button id="sa" class="button button2" onClick="getCountryCode(this.id)">Saudi Arabia</button>
+    <button id="ph" class="button button3" onClick="getCountryCode(this.id)">Philippines</button>
+    <button id="pl" class="button button4" onClick="getCountryCode(this.id)">Poland</button>
+    <button id="it" class="button button5" onClick="getCountryCode(this.id)">Italy</button>
+</header>
+<section>
+  <nav>
+    <ul>
+      <button id="business" onClick="getCategory(this.id)">business</button>
+        <button id="entertainment" onClick="getCategory(this.id)">entertainment</button>
+          <button id="general" onClick="getCategory(this.id)">general</button>
+            <button id="health" onClick="getCategory(this.id)">health</button>
+              <button id="science" onClick="getCategory(this.id)">science</button>
+                <button id="sports" onClick="getCategory(this.id)">sports</button>
+                  <button id="technology" onClick="getCategory(this.id)">technology</button>
+    </ul>
+  </nav>
+  <article>
+    <h1>News</h1>
+      <ul id="news"></ul>
+      </article>
+</section>
+</body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script src="News.js"></script>
+
+</html>
