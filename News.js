@@ -8,6 +8,13 @@ var countries = [
   "canada",
   "iceland"
 ];
+const spinner = document.getElementById("spinner");
+function showSpinner() {
+  spinner.className = "show";
+  setTimeout(() => {
+    spinner.className = spinner.className.replace("show", "");
+  }, 5000);
+}
 function lcs(inputCountry, listCountry, inputCountrySize, listCountrySize) {
   var x = new Array(inputCountrySize + 1);
   for (var i = 0; i < x.length; i++) {
@@ -28,6 +35,7 @@ function lcs(inputCountry, listCountry, inputCountrySize, listCountrySize) {
   return x[inputCountrySize][listCountrySize];
 }
   window.onload = function() {
+    showSpinner();
     localStorage.setItem("myCountryCode", 'us');
     localStorage.setItem("myCategoryCode", 'general');
     showData('us', 'general');
@@ -39,18 +47,21 @@ function lcs(inputCountry, listCountry, inputCountrySize, listCountrySize) {
     return parent.appendChild(el);
   }
   function getCountryCode(clicked_id) {
+        showSpinner();
         var countryCode = clicked_id;
         localStorage.setItem("myCountryCode", countryCode);
         var categoryCode = localStorage.getItem("myCategoryCode");
         showData(countryCode, categoryCode);
   }
   function getCategory(clicked_id) {
+        showSpinner();
         var categoryCode = clicked_id;
         localStorage.setItem("myCategoryCode", categoryCode);
         var countryCode = localStorage.getItem("myCountryCode");
         showData(countryCode, categoryCode);
   }
   function getCountryCodeBySearch() {
+    showSpinner();
     var variable = document.getElementById('CountryCodeID_BySearch').value;
     var maxi = 0;
     var finalcountry;
@@ -69,20 +80,24 @@ function lcs(inputCountry, listCountry, inputCountrySize, listCountrySize) {
   const ul = document.getElementById("news");
   ul.innerHTML = '';
   const url = 'https://newsapi.org/v2/top-headlines?country='+countryCode+'&category='+category+'&apiKey=a6d224d1b3044a3daa6d0f70856b41e0';
+  //const url = 'https://newsapi.org/v2/everything?q=bitcoin&pageSize=50&apiKey=a6d224d1b3044a3daa6d0f70856b41e0';
   fetch(url)
   .then((resp) => resp.json())
   .then(function(data) {
     let getarticles = data.articles;
     console.log(data.articles);
     return getarticles.map(function(getarticle) {
-      let li = createNode('li'),
-          img = createNode('img'),
-          span = createNode('span');
-      img.src = getarticle.urlToImage;
-      span.innerHTML = `<br><br/>${getarticle.author}<br><br/>${getarticle.content}<br><br/>`;
-      append(li, img);
-      append(li, span);
-      append(ul, li);
+          if(getarticle.urlToImage==null || getarticle.author==null || getarticle.content==null){
+          }else{
+              let li = createNode('li'),
+                  img = createNode('img'),
+                  span = createNode('span');
+        img.src = getarticle.urlToImage;
+        span.innerHTML = `<br><br/>${getarticle.author}<br><br/>${getarticle.content}<br><br/>`;
+        append(li, img);
+        append(li, span);
+        append(ul, li);
+          }
     })
   })
   .catch(function(error) {
