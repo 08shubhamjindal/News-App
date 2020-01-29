@@ -93,7 +93,7 @@ function lcs(inputCountry, listCountry, inputCountrySize, listCountrySize) {
                   img = createNode('img'),
                   span = createNode('span');
         img.src = getarticle.urlToImage;
-        span.innerHTML = `<br><br/>${getarticle.author}<br><br/>${getarticle.content}<br><br/>`;
+        span.innerHTML = `<br><br/>${getarticle.author}<br><br/>${getarticle.content}<br><br/><a href=${getarticle.url} target="_blank">Read More</a><br><br/>`;
         append(li, img);
         append(li, span);
         append(ul, li);
