@@ -9,11 +9,12 @@ var countries = [
   "iceland"
 ];
 const spinner = document.getElementById("spinner");
-function showSpinner() {
-  spinner.className = "show";
-  setTimeout(() => {
-    spinner.className = spinner.className.replace("show", "");
-  }, 5000);
+function showSpinner(flag) {
+  if(flag){
+      spinner.className = "show";
+  }else{
+      spinner.className = spinner.className.replace("show", "");
+  }
 }
 function lcs(inputCountry, listCountry, inputCountrySize, listCountrySize) {
   var x = new Array(inputCountrySize + 1);
@@ -35,7 +36,7 @@ function lcs(inputCountry, listCountry, inputCountrySize, listCountrySize) {
   return x[inputCountrySize][listCountrySize];
 }
   window.onload = function() {
-    showSpinner();
+    //showSpinner();
     localStorage.setItem("myCountryCode", 'us');
     localStorage.setItem("myCategoryCode", 'general');
     showData('us', 'general');
@@ -47,21 +48,21 @@ function lcs(inputCountry, listCountry, inputCountrySize, listCountrySize) {
     return parent.appendChild(el);
   }
   function getCountryCode(clicked_id) {
-        showSpinner();
+        //showSpinner();
         var countryCode = clicked_id;
         localStorage.setItem("myCountryCode", countryCode);
         var categoryCode = localStorage.getItem("myCategoryCode");
         showData(countryCode, categoryCode);
   }
   function getCategory(clicked_id) {
-        showSpinner();
+        //showSpinner();
         var categoryCode = clicked_id;
         localStorage.setItem("myCategoryCode", categoryCode);
         var countryCode = localStorage.getItem("myCountryCode");
         showData(countryCode, categoryCode);
   }
   function getCountryCodeBySearch() {
-    showSpinner();
+    //showSpinner();
     var variable = document.getElementById('CountryCodeID_BySearch').value;
     var maxi = 0;
     var finalcountry;
@@ -81,9 +82,11 @@ function lcs(inputCountry, listCountry, inputCountrySize, listCountrySize) {
   ul.innerHTML = '';
   const url = 'https://newsapi.org/v2/top-headlines?country='+countryCode+'&category='+category+'&apiKey=a6d224d1b3044a3daa6d0f70856b41e0';
   //const url = 'https://newsapi.org/v2/everything?q=bitcoin&pageSize=50&apiKey=a6d224d1b3044a3daa6d0f70856b41e0';
+  showSpinner(true);
   fetch(url)
   .then((resp) => resp.json())
   .then(function(data) {
+    showSpinner(false);
     let getarticles = data.articles;
     console.log(data.articles);
     return getarticles.map(function(getarticle) {
